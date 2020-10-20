@@ -15,6 +15,7 @@
  */
 package org.japo.java.main;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -23,27 +24,31 @@ import java.util.Scanner;
  */
 public class Main {
 
+    // Objeto Scanner
+    public static final Scanner SCN
+            = new Scanner(System.in, "Windows-1252")
+                    .useLocale(Locale.ENGLISH).useDelimiter("\\s+");
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Objeto Scanner
-        Scanner scn = new Scanner(System.in);
-
         // Variable
         int numero;
 
         try {
             // Tirada
             System.out.print("Número Primitiva ..: ");
-            numero = scn.nextInt();
-            scn.nextLine();
+            numero = SCN.nextInt();
 
             // Mensaje
-            System.out.printf("Número Primitiva ..: %d\n", numero);
+            System.out.printf("Número Primitiva ..: %d%n", numero);
         } catch (Exception e) {
-            System.out.println("Error de entrada");
-            scn.nextLine();
+            // Mensaje de Error
+            System.out.println("ERROR: Entrada incorrecta");
+        } finally {
+            // Vaciado Buffer Teclado
+            SCN.nextLine();
         }
     }
 }
